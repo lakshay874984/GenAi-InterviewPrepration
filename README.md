@@ -12,8 +12,17 @@ This is a full-stack GenAI-based job preparation platform designed to help users
 ## 📸 Screenshots
 
 <img src="Frontend/public/Screenshot 2026-03-22 180626.png" width="400"/>
+
+## Fill the Required Fiels
+
 <img src="Frontend/public/Screenshot 2026-03-22 180717.png" width="400"/>
+
+## Your Previous  Sessions
+
 <img src="Frontend/public/Screenshot 2026-03-22 180802.png" width="400"/>
+
+## Practice Technical and Behavioral Questions, Follow the study plan 
+
 <img src="Frontend/public/Screenshot 2026-03-22 180856.png" width="400"/>
 
 ## sample resume build by the AI
