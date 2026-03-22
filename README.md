@@ -77,9 +77,6 @@ cd frontend
 npm install
 npm run dev
 
----
-
-```bash
-cd frontend
+cd Backend
 npm install
 npm run dev
