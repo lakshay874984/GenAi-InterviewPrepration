@@ -66,18 +66,13 @@ This is a full-stack GenAI-based job preparation platform designed to help users
 - 📑 ATS-optimized resume generation (PDF)  
 - 🔐 Secure authentication using JWT  
 
-
----
-
-## 🔗 Live Demo
-(Add your deployed link here)
-
 ---
 
 ## 📂 Run Locally
 
-```bash
-git clone https://github.com/your-username/repo-name
-cd repo-name
+cd Frontend
+npm install
+npm run dev
+cd Backend
 npm install
 npm run dev
