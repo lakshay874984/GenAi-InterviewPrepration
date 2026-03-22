@@ -11,9 +11,11 @@ This is a full-stack GenAI-based job preparation platform designed to help users
 
 ## 📸 Screenshots
 
-<img src="assets/upload.png" width="400"/>
-<img src="assets/report.png" width="400"/>
-<img src="assets/questions.png" width="400"/>
+<img src="Frontend/public/Screenshot 2026-03-22 180626.png" width="400"/>
+<img src="Frontend/public/Screenshot 2026-03-22 180717.png" width="400"/>
+<img src="Frontend/public/Screenshot 2026-03-22 180802.png" width="400"/>
+<img src="Frontend/public/Screenshot 2026-03-22 180856.png" width="400"/>
+<img src="Frontend/public/Screenshot 2026-03-22 181018.png" width="400"/>
 
 
 ---
