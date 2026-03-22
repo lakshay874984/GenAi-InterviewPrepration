@@ -21,7 +21,7 @@ This is a full-stack GenAI-based job preparation platform designed to help users
 
 <img src="Frontend/public/Screenshot 2026-03-22 180802.png" width="400"/>
 
-## Practice Technical and Behavioral Questions, Follow the study plan 
+## Practice Technical and Behavioral Questions, Follow the study plan, Build Your Resume
 
 <img src="Frontend/public/Screenshot 2026-03-22 180856.png" width="400"/>
 
