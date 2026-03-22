@@ -5,6 +5,7 @@ import Protected from "./features/auth/components/Protected.jsx";
 import Home from "./features/interview/pages/Home.jsx";
 import Interview from "./features/interview/pages/interview.jsx";
 import Layout from "./components/Layout.jsx";
+import React from "react"
 
 export const router = createBrowserRouter([
   {

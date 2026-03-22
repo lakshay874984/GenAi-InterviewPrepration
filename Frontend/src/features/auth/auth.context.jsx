@@ -1,7 +1,8 @@
 import { createContext,useState,useEffect, use } from "react";// createContext is used to create a context object, and useState is a hook that allows us to manage state in a functional component. by using createContext, we can create a context that can be shared across multiple components without having to pass props down manually at every level. The useState hook allows us to manage the state of the user and loading status within the AuthProvider component.
 import { getMe } from "./services/auth.api";
-export const AuthContext = createContext() // This line creates a new context object called AuthContext. This context will be used to share authentication-related data (like the current user and loading status) across the component tree without having to pass props down manually at every level.
-
+export const AuthContext = createContext() 
+// This line creates a new context object called AuthContext. This context will be used to share authentication-related data (like the current user and loading status) across the component tree without having to pass props down manually at every level.
+import React from "react"
 export const AuthProvider = ({ children }) => { // This line defines a functional component called AuthProvider. It takes a single prop called children, which represents the child components that will be wrapped by this provider. The AuthProvider component will use the AuthContext to provide authentication-related data to its children.
 
     const [user, setUser] = useState(null);
