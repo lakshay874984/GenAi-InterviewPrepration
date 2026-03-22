@@ -72,14 +72,10 @@ This is a full-stack GenAI-based job preparation platform designed to help users
 
 ---
 
-## Frontend
-
 ```bash
 cd frontend
 npm install
 npm run dev
-
-## Backend
 
 cd Backend
 npm install
