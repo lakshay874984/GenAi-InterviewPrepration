@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const API_URL = axios.create({ baseURL: 'http://localhost:3000/api/auth' ,
+const API_URL = axios.create({ baseURL: `${import.meta.env.VITE_API_URL}/api/auth`,
     withCredentials: true // This is important to include cookies in the request
 }
-); // Change this to your backend URL
+); // Uses environment variable
 
 export const register = async ({ email, password, username }) => {
     return await API_URL.post('/register', { email, password, username });
