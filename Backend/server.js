@@ -8,6 +8,7 @@ const cors = require("cors");
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
+  "https://genai-interviewprepration-production.up.railway.app",
   process.env.FRONTEND_URL
 ].filter(Boolean);
 
