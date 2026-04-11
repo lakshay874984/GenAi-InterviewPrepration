@@ -47,8 +47,13 @@ async function registerUserController(req, res) {
             process.env.JWT_SECRET, 
             { expiresIn : "1d" }
         )
-        // set the token as a cookie in the response
-        res.cookie("token", token)
+        // set the token as a cookie in the response with proper options for production
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+            maxAge: 24 * 60 * 60 * 1000 // 1 day
+        })
 
 
         // save the user to the database
@@ -95,7 +100,12 @@ async function loginUserController(req, res) {
         process.env.JWT_SECRET,
         { expiresIn : "1d" }
     )
-    res.cookie("token", token)
+    res.cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+        maxAge: 24 * 60 * 60 * 1000 // 1 day
+    })
     return res.status(200).json({ message : "User logged in successfully" ,
         user : {
             id : user._id,
