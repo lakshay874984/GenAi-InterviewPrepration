@@ -9,7 +9,11 @@ const cors = require("cors");
 app.use(cors({
   origin: [
     "http://localhost:5173",
+    "http://localhost:3000",
     "https://gen-ai-interview-prepration-3wqa.vercel.app",
+   
+    "https://gen-ai-interview-prepration-frontend.vercel.app",
+    "https://genai-interviewprepration-1.onrender.com",
   ],
   credentials: true
 }));

@@ -23,7 +23,7 @@ const interviewReportSchema = z.object({
     })).describe("Behavioral questions that can be asked in the interview along with their intention and how to answer them"),
     skillGaps: z.array(z.object({
         skill: z.string().describe("The skill which the candidate is lacking"),
-        severity: z.enum([ "low", "medium", "high" ]).describe("The severity of this skill gap, i.e. how important is this skill for the job and how much it can impact the candidate's chances")
+        severity: z.enum(["low", "medium", "high"]).describe("The severity of this skill gap, i.e. how important is this skill for the job and how much it can impact the candidate's chances")
     })).describe("List of skill gaps in the candidate's profile along with their severity"),
     preparationPlan: z.array(z.object({
         day: z.number().describe("The day number in the preparation plan, starting from 1"),
@@ -45,24 +45,24 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
             responsejsonschema: zodToJsonSchema(interviewReportSchema),
         }
     })
-//     async function saveReportToFile() {
-//     const formattedJSON = JSON.stringify(
-//   JSON.parse(response.text),
-//   null,
-//   2
-// );
+    //     async function saveReportToFile() {
+    //     const formattedJSON = JSON.stringify(
+    //   JSON.parse(response.text),
+    //   null,
+    //   2
+    // );
 
-// fs.writeFileSync(
-//   "D:\\YT-GENAI\\Backend\\src\\output.json",
-//   formattedJSON,
-//   "utf-8"
-// );
-// console.log(JSON.parse(response.text));
-// console.log("File saved successfully!");
-//     }
-//     await saveReportToFile();
+    // fs.writeFileSync(
+    //   "D:\\YT-GENAI\\Backend\\src\\output.json",
+    //   formattedJSON,
+    //   "utf-8"
+    // );
+    // console.log(JSON.parse(response.text));
+    // console.log("File saved successfully!");
+    //     }
+    //     await saveReportToFile();
 
-return JSON.parse(response.text)
+    return JSON.parse(response.text)
 
 
 
@@ -92,12 +92,13 @@ async function generatePdfFromHtml(htmlContent) {
 }
 
 async function generateResumePdf({ resume, selfDescription, jobDescription }) {
+    try {
 
-    const resumePdfSchema = z.object({
-        html: z.string().describe("The HTML content of the resume which can be converted to PDF using any library like puppeteer")
-    })
+        const resumePdfSchema = z.object({
+            html: z.string().describe("The HTML content of the resume which can be converted to PDF using any library like puppeteer")
+        })
 
-    const prompt = `Generate resume for a candidate with the following details:
+        const prompt = `Generate resume for a candidate with the following details:
                         Resume: ${resume}
                         Self Description: ${selfDescription}
                         Job Description: ${jobDescription}
@@ -110,27 +111,40 @@ async function generateResumePdf({ resume, selfDescription, jobDescription }) {
                         The resume should not be so lengthy, it should ideally be 1-2 pages long when converted to PDF. Focus on quality rather than quantity and make sure to include all the relevant information that can increase the candidate's chances of getting an interview call for the given job description.
                     `
 
-    const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: prompt,
-        config: {
-            responseMimeType: "application/json",
-            responseSchema: zodToJsonSchema(resumePdfSchema),
+        const response = await ai.models.generateContent({
+            model: "gemini-2.5-flash",
+            contents: prompt,
+            config: {
+                responseMimeType: "application/json",
+                responseSchema: zodToJsonSchema(resumePdfSchema),
+            }
+        })
+
+
+        const jsonContent = JSON.parse(response.text)
+
+        const pdfBuffer = await generatePdfFromHtml(jsonContent.html)
+        console.log(pdfBuffer)
+        console.log(JSON.parse(response.text))
+        console.log(response.text)
+
+        return pdfBuffer
+    }
+    catch (error) {
+        console.error("Error in generateResumePdf:", error);
+
+        // FIXED: Graceful 503 server handling
+        if (error.status === 503) {
+            throw new Error("AI service is busy right now. Please try again in a few seconds.");
         }
-    })
 
-
-    const jsonContent = JSON.parse(response.text)
-
-    const pdfBuffer = await generatePdfFromHtml(jsonContent.html)
-    console.log(JSON.parse(response.text))
-    console.log(response.text)
-
-    return pdfBuffer
+        // FIXED: Uses capital "Error" constructor to prevent "TypeError: error is not a constructor"
+        throw new Error(error.message || "An unexpected error occurred while compiling your resume.");
+    }
 
 }
 
 
 
 
-module.exports = { generateInterviewReport , generateResumePdf}
+module.exports = { generateInterviewReport, generateResumePdf }
